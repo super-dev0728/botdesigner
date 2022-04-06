@@ -1,0 +1,769 @@
+.scarperWrap {
+    padding: 35px 55px;
+    background-color: #fff;
+}
+.scarperWrap .section-title {
+    text-align: center;
+    padding-bottom: 40px;
+}
+.scarperWrap .section-title h4 {
+    position: relative;
+    color: #2B2B2B;
+    font-size: 30px;
+    font-family: 'Arial-Bold';
+}
+.scarperWrap .section-title h4:before, .scarperWrap .section-title h4:after {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 475px;
+    height: 5px;
+    background-image: url('../images/Progress-Bar1.svg');
+    content: "";
+    background-position: 50% 50% ;
+    background-repeat: no-repeat;
+}
+.scarperWrap .section-title h4:after {
+    left: auto;
+    right: 0;
+    transform: translateX(-180deg);
+}
+.scarperForm .form-group  {
+    display: inline-block;
+    vertical-align: middle;
+}
+.scarperForm .form-group label {
+    font-size: 24px;
+    color: #2B2B2B;
+    display: inline-block;
+}
+.scarperForm .form-group .form-control {
+    width: 322px;
+    display: inline-block;
+    margin-left: 18px;
+}
+.scarperForm .form-group {
+    margin-right: 28px;
+}
+.scarperForm .form-group:last-child {
+    margin-right: 0;
+}
+.scarperForm .form-group .form-control {
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 12px 15px;
+}
+.scarperForm .form-group .form-select {
+    padding-right: 30px;
+}
+.selectPluseIcon {
+    margin-left: 15px;
+}
+.scarperForm .form-group .form-control#ScraperName {
+    width: 314px;
+}
+.accordion-content h4 img {
+    margin-right: 15px;
+}
+.accordion-content h4 {
+    font-size: 18px;
+    color: #2B2B2B;
+}
+
+
+
+
+
+
+
+
+
+
+
+.tabsBlock .nav-tabs .nav-item a {
+    min-height: 40px;
+}
+.tabsBlock .nav-tabs .nav-item.show .nav-link, .tabsBlock .nav-tabs .nav-item .nav-link.active {
+    color: #fff;
+    background-color: #0082d5;
+    border: 1px solid #0082d5;
+    font-size: 14px;
+}
+.tabsBlock .nav-tabs .nav-item:first-child .nav-link {
+    border-top-left-radius: 15px;
+}
+.tabsBlock .nav-tabs .nav-item .nav-link {
+    border: 1px solid #0082d5;
+    color: #2B2B2B;
+    margin-right: 5px;
+    padding: 3px;
+    text-align: center;
+    width: 210px;
+    font-size: 14px;
+    text-transform: capitalize;
+    line-height: 16px;
+    border-bottom: none;
+    cursor: pointer;
+    border-radius: 0;
+}
+.tabsBlock .nav-tabs .nav-item:last-child .nav-link {
+    margin-right: 0;
+}
+.tabsBlock .nav-tabs .nav-item .nav-link span {
+    font-size: 12px;
+    display: inline-block;
+    width: 100%;
+    line-height: 14px;
+}
+.tabsBlock .nav-tabs .nav-item .nav-link span {
+    font-size: 12px;
+}
+.tab-content {
+    padding: 16px;
+    border: 1px solid #0082D5;
+    min-height: 900px;
+    
+}
+.tab-content-right {
+    background-color: #f2f7fb;
+}
+.tab-info .form-group {
+    display: flex;
+}
+.tab-info .button-group button, .scarperFormThree .button-group button {
+    border: 1px solid #0082d5 !important;
+    color: #0082d5 !important;
+    background-color: #fff;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    padding: 6px 10px;
+}
+.tab-info .button-group button.active, .scarperFormThree .button-group button.active {
+    background-color: #0082d5;
+    color: #fff !important;
+}
+.tab-info .button-group button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.tab-info .button-group button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.tab-info .form-group button, .scarperFormThree .form-group button {
+    background-color: #0082d5;
+    color: #fff;
+    border: none;
+    min-width: 160px;
+    font-size: 18px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.scarperFormThree .form-group button {
+    padding:10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    position: relative;
+    top: 2px;
+}
+.tab-info .form-group .form-control {
+    border-bottom-right-radius: 30px;
+}
+.tab-info .form-group textarea.form-control {
+    height: 63px;
+    resize: vertical;
+    border-radius: 0;
+}
+.radio-block {
+    margin-bottom: 15px;
+}
+.radio-block label {
+    font-size: 13px;
+    color: #2B2B2B;
+}
+.radio-block .button-group {
+    border-radius: 10px;
+}
+.tab-info .button-group button.w-210 {
+    min-width: 210px;
+}
+.tab-info h5 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.tab-info {
+    padding-top: 15px;
+}
+.tab-info img {
+    margin-right: 18px;
+}
+.tab-info .btn-block button.checkbox {
+    min-width: 88px;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 8px 5px;
+    margin-left: 25px;
+}
+.tab-info .btn-block .uploadicon img {
+    width: 25px;
+    margin: 0;
+}
+.tab-info .btn-block .downloadicon img {
+    width: 19px;
+    margin: 0;
+}
+.tab-info .btn-block {
+    text-align: center;
+}
+.tab-info .btn-block span {
+    display: inline-block;
+    margin: 5px 0 5px 20px;
+}
+.input-block .btnBlock {
+    text-align: center;
+}
+.input-block .btnBlock img {
+    margin: 0;
+    margin-top: 7px;
+    width: 23px;
+    float: left;
+}
+.input-block .btnBlock .green-btn {
+    padding: 6px 8px;
+    background-color: #39964E;
+    border: 1px solid #39964E;
+    border-bottom-right-radius: 30px;
+    color: #fff;
+    font-size: 12px;
+}
+.input-block .btnBlock .green-btn span {
+    overflow: hidden;
+    padding-left: 10px;
+    display: inline-block;
+}
+.input-block {
+    padding-bottom: 35px;
+}
+.tabsBlock .nav {
+    display: inline-block;
+    width: 100%;
+}
+.tabsBlock .nav .nav-item {
+    display: inline-block;
+    vertical-align: middle;
+}
+.scarperForm .form-group .form-label {
+    display: inline-block;
+    padding: 0 25px;
+    font-size: 22px;
+}
+.scarperForm .form-group .form-switch {
+    border:1px solid #9DCFEF;
+    border-left: none;
+    height: 44px;
+    margin-right: 0;
+}
+.form-switch .form-check-input {
+    margin: 10px auto 0;
+    float: none;
+}
+body .mb-0 {
+    margin-bottom: 0 !important;
+}
+.scarperFormTwo .green-btn {
+    background-color: #39964E;
+    border: 1px solid #39964E;
+    color: #fff;
+    padding: 11px 15px;
+    border-bottom-right-radius: 30px;
+}
+.scarperFormTwo .green-btn img {
+    width: 20px;
+    margin-right: 10px;
+}
+.action-btn {
+    display: inline-block;
+}
+.action-btn a {
+    display: inline-block;
+    padding: 6px 10px;
+    background-color: #0082d5;
+    font-size: 15px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+ .action-btn a.red-btn {
+    background-color: #E40047;
+}
+.scarperFormTwo .action-btn a img {
+    margin-right: 5px;
+}
+.action-btn {
+    position: relative;
+}
+.action-btn a.green-btn {
+    background-color: #39964E;
+}
+/* .action-btn a.green-btn:hover ~ .action-option, .action-btn a.green-btn:focus ~ .action-option,  .action-btn a.green-btn:visited ~ .action-option {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+} */
+.action-option {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #f2f7fb;
+    border: 1px solid #d3e8f6;
+    min-width: 128px;
+    font-size: 11px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease .4s;
+    transform: translateY(30px);
+    z-index: 9;
+}
+.action-btn a ~ .action-option span {
+    color: #2B2B2B;
+    width: 100%;
+    padding: 5px 8px;
+    background-color: #f2f7fb;
+    /* border: 1px solid #d3e8f6; */
+    display: inline-block;
+    cursor: pointer;
+    transition: all ease .4s;
+}
+.action-btn a ~ .action-option span:hover, .action-btn a ~ .action-option span:hover:focus {
+    background-color: #39964E;
+    color: #fff;
+}
+/* .action-btn a ~ .action-option span:nth-child(even) {
+    background-color: #0082D5;
+    color:#fff;
+    display: inline-block;
+    border: 1px solid #0082D5;
+    padding: 5px 8px;
+    width: 100%;
+    cursor: pointer;
+} */
+.main-btn-block ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+.main-btn-block ul li {
+    position: relative;
+    max-width: 33.333%;
+    flex: 0 0 auto;
+    width: 100%;
+    text-align: center;
+}
+.main-btn-block ul li:first-child {
+    text-align: left;
+}
+.main-btn-block ul li:last-child {
+    text-align: right;
+}
+.main-btn-block ul li span {
+    display: inline-block;
+    width: 100%;
+    margin: 20px 0;
+}
+.main-btn-block ul li a {
+    padding: 12px 6px;
+    background-color: #0082d5;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.main-btn-block ul li a.border-color {
+    background-color: #fff;
+    color: #0082d5;
+    border: 1px solid #0082d5;
+}
+.main-btn-block ul li a.border-color {
+    margin-top: 30px;
+}
+.main-btn-block ul li img {
+    margin-right: 5px;
+}
+.action-btn.text-right {
+    text-align: right;
+    display: inline-block;
+    width: 100%;
+    padding: 15px 0;
+}
+.action-btn.text-right img {
+    margin-right: 5px;
+}
+.scarperFormThree {
+    text-align: right;
+    padding: 15px 0;
+}
+.scarperFormThree .radio-block {
+    display: inline-block;
+    margin-bottom: 0;
+}
+.scarperFormThree .form-group {
+    margin-bottom: 0 !important;
+}
+.form-check.form-switch  button {
+    font-size: 13px;
+}
+.tab-pane h6 {
+    font-family: 'Arial-Bold';
+    margin-top: 15px;
+}
+.tab-pane h6 span {
+    display: inline-block;
+    margin-right: 10px;
+}
+.tab-pane ul li {
+    margin-bottom: 15px;
+}
+.tab-pane table tr th {
+    background-color: #0082d5;
+    color: #fff;
+}
+.input-block input[type="radio"] {
+    margin-right: 10px;
+}
+.space-mid {
+    min-height: 150px;
+}
+.space-mid .card .card-header {
+    background-color: #0082d5;
+}
+.space-mid .card {
+    border: 1px solid #dae9f1;
+    background-color: transparent;
+}
+.space-mid .card .card-header h5 {
+    padding: 0;
+    margin: 0;
+    color: #fff;
+}
+.p-relative {
+    position: relative;
+    display: inline-block;
+}
+.p-relative img {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 11px;
+}
+img.info {
+    width: 11px;
+}
+.p-relatve {
+    position: relative;
+}
+.p-relatve img {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 11px;
+    margin-right: 0 !important;
+}
+
+.dropDownOption {
+    display: inline-block;
+}
+.dropDownOption:hover .action-option {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+@media screen and (max-width: 1900px) {
+    .scarperForm .form-group .form-label {
+        font-size: 20px;
+        padding: 0 10px;
+    }
+}
+@media screen and (max-width: 1850px) {
+    .tabsBlock .nav-tabs .nav-item .nav-link {
+        font-size: 12px;
+        width: 185px;
+        
+    }
+}
+@media screen and (max-width: 1800px) {
+    .scarperForm .form-group label {
+        font-size: 20px;
+    }
+    .scarperForm .form-group .form-control {
+        width: 290px;
+    }
+    .scarperWrap .section-title h4::before, .scarperWrap .section-title h4::after {
+        width: 250px;
+    }
+}
+@media screen and (max-width: 1750px) {
+    .scarperForm .form-group {
+        margin-right: 15px;
+    }
+}
+@media screen and (max-width: 1650px) {
+    .scarperForm .form-group .form-control#ScraperName {
+        width: 200px;
+    }
+    .scarperForm .form-group .form-control {
+        width: 250px;
+    }
+    .tabsBlock .nav .nav-item {
+        width: 49%;
+    }
+    .tabsBlock .nav-tabs .nav-item .nav-link {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 1500px) {
+    .scarperForm .form-group .form-label {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 1450px) {
+    .scarperForm .form-group label {
+        display: block;
+    }
+    .scarperForm .form-group .form-control {
+        margin: 0;
+    }
+    .scarperWrap .section-title h4::before, .scarperWrap .section-title h4::after {
+        width: 130px;
+    }
+
+}
+@media screen and (max-width: 1400px) {
+    .scarperForm .form-group .form-control {
+        width: 230px;
+    }
+    .scarperForm .form-group .form-label {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 1300px) {
+    .scarperWrap {
+        padding: 35px 15px;
+    }
+    .scarperForm .form-group .form-label {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 1199px) {
+    .scarperWrap .section-title h4::before, .scarperWrap .section-title h4::after {
+        display: none;
+    }
+    .tabsBlock .nav {
+        text-align: center;
+    }
+    .tabsBlock {
+        margin-bottom: 30px;
+    }
+    .scarperFormThree .form-group, .scarperFormThree .radio-block {
+        margin-bottom: 15px !important;
+    }
+    .scarperForm .form-group .form-label {
+        width: 100%;
+    }  
+    .scarperForm form {
+        display: flex;
+    } 
+    .scarperForm .form-group {
+        max-width: 33.333%;
+    }
+    .scarperForm .form-group .form-control, .scarperForm .form-group .form-control#ScraperName {
+        width: 85%;
+    }
+    .scarperForm.scarperFormTwo .form-group {
+        max-width: 100%;
+    }
+    .scarperForm.scarperFormTwo .form-group .form-label {
+        width: auto;
+    }
+    .scarperForm.scarperFormTwo .form-group .form-control, .scarperForm.scarperFormTwo .form-group .form-control#ScraperName {
+        width: 100%;
+    }
+    .form-switch label {
+        margin-top: 7px;
+    }
+    .scarperForm.scarperFormTwo .action-btn {
+        margin-top: 10px;
+    }
+    .scarperFormThree .button-group button {
+        font-size: 14px;
+    }
+    .scarperFormThree .form-group, .scarperFormThree .radio-block {
+        max-width: none;
+        width: 49%;
+    }
+    .scarperFormThree .form-group .form-control {
+        width: auto;
+    }
+    .scarperFormThree .form-group .form-control {
+        width: 240px;
+    }
+    .scarperFormThree .radio-block {
+        vertical-align: middle;
+    }
+}
+@media screen and (max-width: 991px) {
+    .scarperForm .form-group .form-control {
+        width: 150px;
+    }
+    .scarperWrap .section-title h4 {
+        font-size: 26px;
+    }
+    /* .tabsBlock .nav .nav-item {
+        width: 100%;
+    }
+    .tabsBlock .nav-tabs .nav-item a {
+        min-height: auto;
+        
+    }
+    .tabsBlock .nav-tabs .nav-item .nav-link {
+        padding: 12px 15px;
+    } */
+    .scarperFormThree .form-group, .scarperFormThree .radio-block {
+        width: 100%;
+    }
+    .scarperFormThree .form-group {
+        text-align: left;
+    }
+    .scarperForm .form-group .form-control#ScraperName, .scarperForm .form-group .form-control {
+        width: 84%;
+    }
+    .scarperFormThree .form-group .form-control {
+        width: auto;
+    }
+    .scarperFormThree .form-group .form-control {
+        width: 500px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .scarperForm .form-group {
+        width: 100%;
+    }
+    .scarperForm .form-group .form-control#ScraperName, .scarperForm .form-group .form-control {
+        width: 90%;
+    }
+    .scarperWrap {
+        padding: 25px 15px;
+    }
+    .scarperWrap .section-title h4 {
+        font-size: 20px;
+    }
+    .scarperForm form {
+        display: inline-block;
+        width: 100%;
+    }
+    .scarperForm .form-group {
+        max-width: none;
+        width: 45%;
+    }
+    .scarperForm .form-group .form-control {
+        width: 84%;
+    }
+    .scarperForm.scarperFormTwo .form-group {
+        width: auto;
+    }
+    .scarperFormThree .form-group {
+        width: 100%;
+    }
+    .scarperForm.scarperFormTwo .form-group .form-label {
+        width: 100%;
+    }
+    .scarperForm.scarperFormTwo .form-group.form-check .form-label {
+        width: auto;
+    }
+    .scarperForm .form-group {
+        margin-right: 0;
+    }
+    .scarperForm.scarperFormThree .form-group .form-control {
+        width: 49%;
+    }
+}
+@media screen and (max-width: 575px) {
+    .tab-info .form-group button {
+        padding: 8px 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .tab-info .btn-block button.checkbox {
+        margin-top: 10px;
+    }
+    .tab-info .form-group button br {
+        display: none;
+    }
+    .tab-info .form-group {
+        display: inline-block;
+        width: 100%;
+    }
+    .action-btn {
+        padding: 15px 0;
+    }
+    .action-btn a {
+        margin-bottom: 5px;
+    }
+    .main-btn-block ul li span {
+        padding: 5px;
+    }
+    .scarperForm .form-group {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 479px) {
+    .scarperForm .form-group .form-control#ScraperName, .scarperForm .form-group .form-control {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .scarperForm .form-group .form-control {
+        width: 87%;
+    }
+    .p-relative {
+        width: 100%;
+    }
+    .scarperForm.scarperFormTwo .form-group {
+        width: 100%;
+        text-align: center;
+    }
+    .scarperForm .form-group .form-switch {
+        border-left: 1px solid #9DCFEF;
+    }
+    .tab-info .form-group button, .scarperFormThree .form-group button {
+        font-size: 14px;
+    }
+    .scarperForm.scarperFormThree .form-group .form-control {
+        width: 100%;
+    }
+    .tabsBlock .nav .nav-item {
+        width: 100%;
+    }
+    .tabsBlock .nav-tabs .nav-item a {
+        min-height: auto;
+        padding: 10px !important;
+        display: inline-block;
+    }
+    .main-btn-block ul li {
+        max-width: 100%;
+        text-align: right;
+    }
+    .main-btn-block ul li:first-child {
+        text-align: right;
+    }
+    .main-btn-block ul li span {
+        margin: 5px 0;
+    }
+    .main-btn-block ul li a.border-color {
+        margin-top: 0;
+    }
+}

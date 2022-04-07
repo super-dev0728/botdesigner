@@ -1,0 +1,42 @@
+.newProject .newProjectWrap {
+    padding: 100px 70px  65px;
+    max-width: 1565px;
+    margin: 0 auto;
+}
+.newFile input {
+    position:absolute;
+    opacity: 0;
+    visibility:hidden;
+}
+.newFile label {
+    cursor: pointer;
+}
+.newFile .input-text {
+    font-size: 24px;
+    color: #2B2B2B;
+    font-family: 'Arial-Bold';
+    padding-left: 27px;
+    text-transform: uppercase;
+}
+.newFile label svg {
+    color: #0082D5;
+}
+.form-group-inner .form-select {
+    width: auto;
+    display: inline-block;
+}
+.date-picker {
+    overflow: hidden;
+    position: relative;
+}
+.date-picker .rmdp-container  {
+    position: absolute;
+    left: 0;
+    top: 0;
+    
+}
+.date-picker .rmdp-container .rmdp-input {
+    background-color: transparent;
+    border: none;
+    opacity: 0;
+}

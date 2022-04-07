@@ -1,0 +1,126 @@
+.project-search {
+  float: right;
+	padding: 15px;
+}
+.project-search ul li form {
+	position: relative;
+}
+.project-search ul li {
+	display: inline-block;
+	padding: 0 12px;
+}
+.project-search ul li a {
+	color: #0082D5;
+	display: inline-block;
+}
+.project-search ul li input {
+	min-width: 377px;
+}
+.project-search ul li .form-group {
+	position: relative;
+}
+.project-search ul li span {
+	position: absolute;
+	left: 13px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 19px;
+	cursor: pointer;
+}
+.project-search ul li span.close-icon {
+	left: auto;
+	right: 13px;
+}
+.project-search ul li .form-control {
+	padding: 0 45px;
+	background-color: transparent;
+	border-color: rgba(128, 128, 128, 0.97);
+	border-radius: 15px;
+	font-size: 22px;
+}
+.existing-bot .sub-title {
+	color: #808080;
+	font-size: 20px;
+	font-family: 'Arial-Regular';
+}
+.modalWrap.export-bots-datasets .btn-block a.style-two {
+	background-color: #0082D5;
+	border-color: #0082D5;
+}
+.export-bots-datasets .modalBodyContent h2 {
+	font-size: 18px;
+	font-family: 'Arial-Bold';
+	margin-bottom: 30px;
+	margin-top: 40px;
+}
+.export-bots-datasets .modalBodyContent h2 img {
+	margin-right: 10px;
+	width: 29px;
+}
+.existing-bot.modalWrap .modalBodyContent .simpal-check label {
+	width: 100%;
+	text-align: left;
+}
+.existing-bot.modalWrap .modalBodyContent .simpal-check label input {
+	margin-left: 15px;
+}
+.e-multiselect {
+	border:none !important;
+	
+}
+.e-multiselect .e-multi-select-wrapper {
+	box-shadow: none;
+    border: 1px solid #0082D5;
+    border-radius: 4px;
+	padding: 8px 8px 5px 8px !important;
+}
+@media screen and (max-width:767px) {
+	.project-search ul li input {
+		min-width: auto;
+		width: 250px;
+	}
+	.newProject .newProjectWrap {
+		padding: 100px 15px 30px;
+	}
+	.newFile .input-text {
+		font-size:22px;
+	}
+	.newProjectWrap h3 {
+		font-size: 20px;
+	}
+}
+@media screen and (max-width:575px) {
+	.project-search ul li {
+		padding: 0 7px;
+	}
+	.project-search ul li a svg {
+		width: 28px;
+	}
+	.newFile .input-text {
+		font-size:18px;
+	}
+	.newProjectWrap h3 {
+		font-size: 18px;
+	}
+	.project-search ul li a img {
+		width: 20px;
+	}
+}
+@media screen and (max-width:479px) {
+	.project-search ul li input {
+		min-width: auto;
+		max-width: 180px;
+	}
+	.project-search ul li a svg {
+		width: 18px;
+	}
+	.newProjectWrap h3 {
+		font-size: 16px;
+	}
+
+}
+@media screen and (max-width:359px) {
+	.project-search ul li input {
+		max-width: 170px;
+	}
+}

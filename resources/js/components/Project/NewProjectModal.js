@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import DatePicker from "react-multi-date-picker"
 import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -12,7 +12,8 @@ import icon37 from '../../../images/icon37.svg'
 const NewProjectModal = ({
   isOpen,
   toggleAddModal,
-  addProject
+  addProject,
+  history
 }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -35,7 +36,7 @@ const NewProjectModal = ({
 
   const saveProject = (e) => {
     e.preventDefault();
-    addProject(formData)
+    addProject(formData, history)
       .then(toggleAddModal())
       .catch((err) => alert(err));
   };
@@ -122,8 +123,4 @@ NewProjectModal.propTypes = {
 	addProject: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
-
-};
-
-export default connect(mapStateToProps, { addProject })(NewProjectModal);
+export default connect(null, { addProject })(withRouter(NewProjectModal));

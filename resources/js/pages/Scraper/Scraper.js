@@ -1,27 +1,31 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import { Table } from 'reactstrap';
 import ReactTooltip from 'react-tooltip';
 import PropTypes from 'prop-types';
 // Redux
 import { connect } from 'react-redux';
-import { getProjects } from '../../Redux/actions/project'
+import { getProject } from '../../Redux/actions/project';
+import { getScrapers } from '../../Redux/actions/scraper'
 
-import './Project.css';
+// import './Project.css';
 
 import Spinner from '../../components/Layout/Spinner';
-import TopSearch from '../../components/Layout/TopSearch' 
-import Breadcrumbs from '../../components/Layout/Breadcrumbs'
-import ProjectItem from '../../components/Project/ProjectItem'
+import TopSearch from '../../components/Layout/TopSearch';
+import Breadcrumbs from '../../components/Layout/Breadcrumbs';
+
+import ScraperItem from '../../components/Scraper/ScraperItem';
 import ProjectStatisticsModal from '../../components/Project/ProjectStatisticsModal';
 import NewProject from '../../components/Project/NewProject';
 import NewProjectModal from '../../components/Project/NewProjectModal';
 import ImportModal from '../../components/Project/ImportScraperModal';
 
-const Project = ({getProjects, project: { projects, loading }}) => {
-	useEffect(() => {
-		getProjects();
-	}, [getProjects]);
+const Scraper = ({getProject, getScrapers, project: { project }, scraper: { scrapers, loading }}) => {
+	const projectId = useParams().id;
+  useEffect(() => {
+    getProject(projectId);
+		getScrapers(projectId);
+	}, [getProject, getScrapers, projectId]);
 
   const [add_modal, setAddModal] = useState(false);
   const toggleAddModal = () => setAddModal(!add_modal);
@@ -34,11 +38,11 @@ const Project = ({getProjects, project: { projects, loading }}) => {
 
 	const [selected_id, setProjectId] = useState(0);
 	const setId = (id) => setProjectId(id);
-	var selected_project = projects.filter((project) => (project.id === selected_id))[0];
+	var selected_scraper = scrapers.filter((scraper) => (scraper.id === selected_id))[0];
 
   return (
     <Fragment>
-			<section className="project-list">
+			<section className="project-list cat-bot-list">
 				<Breadcrumbs />
 				<TopSearch />
 				<div className="project-items">
@@ -46,26 +50,25 @@ const Project = ({getProjects, project: { projects, loading }}) => {
 						<Table borderless>
 							<thead>
 								<tr>
-									<th>Name/ID/Description</th>
-									<th>Frequency</th>
-									<th>Status</th>
-									<th>Statistics</th>
-									<th>Actions</th>
+                  <th>Name/ID</th>
+                  <th>Description</th>
+                  <th>Statistics</th>
+                  <th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
 								{ loading ? ( 
 										<Spinner/>
-									) : ( projects.length === 0 ? (
+									) : ( scrapers.length === 0 ? (
 											<Fragment>
 												<NewProject toggleAddModal={toggleAddModal}/>
 												<NewProjectModal isOpen={add_modal} toggleAddModal={toggleAddModal} />
 											</Fragment>
 										) : (
 											<Fragment>
-												{projects.map((project, id) => (
+												{scrapers.map((project, id) => (
 													<Fragment>
-														<ProjectItem
+														<ScraperItem
 															key={id}
 															project={project}
 															toggleStatisticsModal={toggleStatisticsModal}
@@ -74,8 +77,8 @@ const Project = ({getProjects, project: { projects, loading }}) => {
 														/>
 													</Fragment>
 												))}
-												<ProjectStatisticsModal isOpen={statistics_modal} toggle={toggleStatisticsModal} selected_project/>
-												<ImportModal isOpen={import_modal} toggle={toggleImportModal} {...selected_project}/>
+												<ProjectStatisticsModal isOpen={statistics_modal} toggle={toggleStatisticsModal} {...selected_scraper}/>
+												<ImportModal isOpen={import_modal} toggle={toggleImportModal} {...selected_scraper}/>
 											</Fragment>	
 										)
 									)
@@ -85,7 +88,7 @@ const Project = ({getProjects, project: { projects, loading }}) => {
 					</div>
 				</div>
 				{
-					loading === false && projects !== null ? (
+					loading === false && scrapers !== null ? (
 						<div className="pagination-block">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination">
@@ -110,13 +113,16 @@ const Project = ({getProjects, project: { projects, loading }}) => {
   );
 }
 
-Project.propTypes = {
-	getProjects: PropTypes.func.isRequired,
-	project: PropTypes.object.isRequired
+Scraper.propTypes = {
+  getProject: PropTypes.func.isRequired,
+	getScrapers: PropTypes.func.isRequired,
+	project: PropTypes.object.isRequired,
+  scraper: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
-		project: state.project,
+  project: state.project,
+  scraper: state.scraper
 });
 
-export default connect(mapStateToProps, { getProjects })(Project);
+export default connect(mapStateToProps, { getProject, getScrapers })(Scraper);

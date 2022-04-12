@@ -13,21 +13,37 @@ import {
 /**
  * Get all scrapers
  */
-export const getScrapers = () => async (dispatch) => {
-  try {
-    const res = await axios.get('/api/scrapers');
+export const getScrapers = (projectId) => async (dispatch) => {
+  if (projectId === null) {
+    try {
+      const res = await axios.get('/api/scrapers');
 
-    dispatch({
-      type: GET_SCRAPERS,
-      payload: res.data
-    });
+      dispatch({
+        type: GET_SCRAPERS,
+        payload: res.data
+      });
 
-  } catch (err) {
-    dispatch({
-      type: SCRAPER_ERROR,
-      payload: { msg: err.response.status, status: err.response.status}
-    });
+    } catch (err) {
+      dispatch({
+        type: SCRAPER_ERROR,
+        payload: { msg: err.response.status, status: err.response.status}
+      });
+    }
+  } else {
+    try {
+      const res = await axios.post('/api/scrapers', projectId);
+      dispatch({
+        type: GET_SCRAPER,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: SCRAPER_ERROR,
+        payload: { msg: err.response.status, status: err.response.status}
+      });
+    }
   }
+
 };
 
 /**

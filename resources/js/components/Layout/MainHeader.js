@@ -162,14 +162,14 @@ function MainHeader() {
               <span onClick={Closefillter} className="close-icon"></span>
             </li>
 						<li  onClick={handelClick}>
-							<Link className="forRemoveClass" to="/projects/list">
+							<Link className="forRemoveClass" to="/projects">
                 <img src={Icon17} alt="Icon" className="default-img" />
                 <img src={Icon17Hover} alt="Icon" className="hover-img"/>
 								<span className="menu-name">Projects</span>
 							</Link>
 						</li>
 						<li onClick={handelClick}>
-							<Link className="forRemoveClass" to="/projects/add">
+							<Link className="forRemoveClass" to="/projects/new">
                 <img src={Icon18} alt="Icon" className="default-img" />
                 <img src={Icon18Hover} alt="Icon" className="hover-img"/>
 								<span className="menu-name">New Project</span>

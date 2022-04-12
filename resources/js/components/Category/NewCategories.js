@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import { Form, FormGroup, Input, Label, Modal, ModalHeader, Table, ModalBody   } from 'reactstrap';
 
-import '../Project/NewProject.css';
+// import '../Project/NewProject.css';
 
 
 import TopSearch from '../Layout/TopSearch' 

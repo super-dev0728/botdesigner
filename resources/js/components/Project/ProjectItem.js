@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import {Link} from "react-router-dom";
+import {Link, withRouter } from "react-router-dom";
 import ReactTooltip from 'react-tooltip';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteProject } from '../../Redux/actions/project';
+import { deleteProject, getProject } from '../../Redux/actions/project';
 
 import ImageBlock from '../Layout/ImageBlock';
 
@@ -22,7 +22,9 @@ const ProjectItem = ({
   toggleImportModal,
   setId,
   deleteProject,
-  project: { id, name, description, frequency, status }
+  getProject,
+  project: { id, name, description, frequency, status },
+  history
 }) => {
   const openStatisticsModal = (e) => {
     e.preventDefault();
@@ -34,6 +36,12 @@ const ProjectItem = ({
     e.preventDefault();
     setId(id);
     toggleImportModal();
+  }
+
+  const viewDetail = (e) => {
+    e.preventDefault();
+    getProject(id);
+    history.push(`project/${id}`);
   }
 
   // const [modal, setModal] = useState(false);
@@ -56,7 +64,7 @@ const ProjectItem = ({
             <h6>{name}</h6>
             <span className="item-id">ID# {id}</span>
             <p>{description}</p>
-            <Link to={`/projects/${id}/bots`} data-tip="Click here or on the title to see the list of bots and datasets">Project details</Link>
+            <Link data-tip="Click here or on the title to see the list of bots and datasets" onClick={(e) => viewDetail(e)} >Project details</Link>
             <ReactTooltip />
           </div>
         </div>
@@ -140,6 +148,7 @@ const ProjectItem = ({
 
 ProjectItem.propTypes = {
 	deleteProject: PropTypes.func.isRequired,
+  getProject: PropTypes.func.isRequired,
 	project: PropTypes.object.isRequired
 };
 
@@ -147,4 +156,4 @@ const mapStateToProps = (state) => ({
   // project: state.project,
 });
 
-export default connect(mapStateToProps, { deleteProject })(ProjectItem);
+export default connect(mapStateToProps, { deleteProject, getProject })(withRouter(ProjectItem));

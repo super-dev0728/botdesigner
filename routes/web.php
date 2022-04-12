@@ -13,43 +13,43 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/login', function () {
-    return view('index');
-});
-Route::get('/register', function () {
-    return view('index');
-});
-Route::get('/home', function () {
-    return view('index');
-});
-Route::get('/projects', function () {
-    return view('index');
-});
-Route::get('/projects/:id', function () {
-    return view('index');
-});
-Route::get('/projects/:id/edit', function () {
-    return view('index');
-});
-Route::get('/scrapers', function () {
-    return view('index');
-});
-Route::get('/scrapers/:id', function () {
-    return view('index');
-});
-Route::get('/scrapers/:id/edit', function () {
-    return view('index');
-});
-Route::get('/datasets', function () {
-    return view('index');
-});
-
-// Route::get( '/{any}', function () {
+// Route::get('/', function () {
 //     return view('index');
-// })->where('any', '.*');
+// });
+// Route::get('/login', function () {
+//     return view('index');
+// });
+// Route::get('/register', function () {
+//     return view('index');
+// });
+// Route::get('/home', function () {
+//     return view('index');
+// });
+// Route::get('/projects', function () {
+//     return view('index');
+// });
+// Route::get('/projects/:id', function () {
+//     return view('index');
+// });
+// Route::get('/projects/:id/edit', function () {
+//     return view('index');
+// });
+// Route::get('/scrapers', function () {
+//     return view('index');
+// });
+// Route::get('/scrapers/:id', function () {
+//     return view('index');
+// });
+// Route::get('/scrapers/:id/edit', function () {
+//     return view('index');
+// });
+// Route::get('/datasets', function () {
+//     return view('index');
+// });
+
+Route::get( '/{any}', function () {
+    return view('index');
+})->where('any', '.*');
 
 // Route::middleware([
 //     'auth:sanctum',

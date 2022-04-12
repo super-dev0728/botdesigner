@@ -12,7 +12,7 @@ import Home from '../pages/Home';
 import NewProject from '../pages/Project/NewProject';
 import Project from '../pages/Project/Project';
 import ProjectDetailEmpty from '../components/Project/ProjectDetailEmpty';
-import ProjectBotsList from '../components/Project/ProjectBotsList';
+import Scraper from '../pages/Scraper/Scraper';
 
 import SingleBotsDetailEmpty from '../components/Scraper/SingalBotsDetailEmpty';
 import SingleBotDatasets from '../components/Scraper/SingleBotDatasets';
@@ -28,41 +28,44 @@ import DesignerSimpleItemPathResult from '../components/Designer/DesignerSimpleI
 import DesignerSimpleTestPreview from '../components/Designer/DesignerSimpleTestPreview';
 import MainHeader from '../components/Layout/MainHeader';
 
+import Demo from '../components/Demo';
+
 const Router = () => {
   return (
     <section className="container">
       <Switch>
-        <Route exact path='/' component={Landing}/>
-        <Route path='/login' component={Login}/>
-        <Route path='/signup' component={Signup}/>
+        <Route exact path='/' component={Landing} />
+        <Route path='/login' component={Login} />
+        <Route path='/signup' component={Signup} />
         <Route path='/'>
           <MainHeader/>
           <Switch>
-            <Route path='/home' component={Home}/>
-            <Route path='/projects'>
-              <Route path='/' component={Project} />
-              <Route path='/add' component={NewProject} />
-              <Route path='/:id/detail-empty' component={ProjectDetailEmpty} />
-              <Route path='/:id/bots' component={ProjectBotsList} />
-            </Route>
-            <Route path='/scraper'>
-              <Route path='/add' component={NewScraper} />
-              <Route path='/:id/detail-empty' component={SingleBotsDetailEmpty} />
-              <Route path='/:id/datasets' component={SingleBotDatasets} />
-            </Route>
-            <Route path='/category'>
-              <Route path='/' component={CategoryList} /> 
-              <Route path='/add' component={CategoriesListEmpty} />
-              <Route path='/:id/detail-empty' component={CategoriesDetailEmpty} /> 
-              <Route path='/new' component={NewCategory} />
-              <Route path='/:id/bots-list' component={CategoryBotsList} />
-            </Route>
-            <Route path='/designer'>
-              <Route path='/designer-simple-filters' component={DesignerSimpleFilters} />  
-              <Route path='/designer-simple-item-path' component={DesignerSimpleItemPath } />  
-              <Route path='/designer-simple-item-path-result' component={DesignerSimpleItemPathResult } />  
-              <Route path='/designer-simple-test-preview' component={DesignerSimpleTestPreview } />
-            </Route>
+            <Route path='/home' component={Home} />
+            
+            <Route exact path='/projects' component={Project} />
+            <Route path='/projects/new' component={NewProject} />
+            <Route path='/project/:id' component={Scraper} />
+            
+
+
+            <Route exact path='/scrapers' component={Scraper} />
+            <Route path='/scrapers/new' component={ProjectDetailEmpty} />
+            
+            <Route path='/scraper/add' component={NewScraper} />
+            <Route path='/scraper/:id/detail-empty' component={SingleBotsDetailEmpty} />
+            <Route path='/scraper/:id/datasets' component={SingleBotDatasets} />
+
+            <Route path='/category/' component={CategoryList} /> 
+            <Route path='/category/add' component={CategoriesListEmpty} />
+            <Route path='/category/:id/detail-empty' component={CategoriesDetailEmpty} /> 
+            <Route path='/category/new' component={NewCategory} />
+            <Route path='/category/:id/bots-list' component={CategoryBotsList} />
+
+
+            <Route path='/designer/designer-simple-filters' component={DesignerSimpleFilters} />  
+            <Route path='/designer/designer-simple-item-path' component={DesignerSimpleItemPath } />  
+            <Route path='/designer/designer-simple-item-path-result' component={DesignerSimpleItemPathResult } />  
+            <Route path='/designer/designer-simple-test-preview' component={DesignerSimpleTestPreview } />
           </Switch>
         </Route>
       </Switch>

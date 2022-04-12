@@ -4,8 +4,8 @@ import { setAlert } from './alert';
 import {
   GET_PROJECTS,
   ADD_PROJECT,
-  GET_PROJECT,
   DELETE_PROJECT,
+  GET_PROJECT,
   UPDATE_PROJECT,
   PROJECT_ERROR,
   ASSOCIATE_SCRAPER
@@ -34,22 +34,26 @@ export const getProjects = () => async (dispatch) => {
 /**
  * Add a project
  */
-export const addProject = (formData) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-type': 'application/json',
-    },
-  };
-
+export const addProject = (formData, history) => async (dispatch) => {
+  console.log(history);
   try {
+    const config = {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    };
+
     const res = await axios.post('/api/projects', formData, config);
-    console.log(res.data.project);
+
     dispatch({
       type: ADD_PROJECT,
       payload: res.data.project,
     });
 
     dispatch(setAlert('Project created', 'success'));
+
+    history.push('/projects');
+
   } catch (err) {
     dispatch({
       type: PROJECT_ERROR,
@@ -58,24 +62,6 @@ export const addProject = (formData) => async (dispatch) => {
   }
 };
 
-/**
- * Get a project
- */
-export const getProject = (projectId) => async (dispatch) => {
-  try {
-    const res = await axios.get(`/api/projects/${projectId}`);
-
-    dispatch({
-      type: GET_PROJECT,
-      payload: res.data,
-    });
-  } catch (err) {
-    dispatch({
-      type: PROJECT_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  }
-};
 
 /**
  * Delete a project
@@ -97,6 +83,31 @@ export const deleteProject = (projectId) => async (dispatch) => {
     });
   }
 };
+
+/**
+ * Get a project
+ */
+ export const getProject = (projectId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/projects/${projectId}`);
+
+    dispatch({
+      type: GET_PROJECT,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+
+
+
+
+
 
 /**
  *  Associate a Bot/Scraper

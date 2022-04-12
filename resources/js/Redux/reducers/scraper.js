@@ -1,15 +1,15 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
-  GET_PROJECTS,
-  GET_PROJECT,
-  ADD_PROJECT,
-  DELETE_PROJECT,
-  PROJECT_ERROR
+  GET_SCRAPERS,
+  GET_SCRAPER,
+  ADD_SCRAPER,
+  DELETE_SCRAPER,
+  SCRAPER_ERROR
 } from '../actions/types';
 
 const initialState = {
-  projects: [],
-  project: null,
+  scrapers: [],
+  scraper: null,
   loading: true,
   error: {},
 };
@@ -18,31 +18,31 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_PROJECTS:
+    case GET_SCRAPERS:
       return {
         ...state,
-        projects: payload.projects,
+        scrapers: payload.scrapers,
         loading: false
       };
-    case GET_PROJECT:
+    case GET_SCRAPER:
       return {
         ...state,
-        project: payload.projects,
+        scraper: payload.scrapers,
         loading: false
       };
-    case ADD_PROJECT:
+    case ADD_SCRAPER:
       return {
         ...state,
-        projects: [payload, ...state.projects],
+        scrapers: [payload, ...state.scrapers],
         loading: false
       };
-    case DELETE_PROJECT:
+    case DELETE_SCRAPER:
       return {
         ...state,
-        projects: state.projects.filter((project) => project.id !== payload),
+        scrapers: state.scrapers.filter((scraper) => scraper.id !== payload),
         loading: false
       };
-    case PROJECT_ERROR:
+    case SCRAPER_ERROR:
       return {
         ...state,
         error: payload,

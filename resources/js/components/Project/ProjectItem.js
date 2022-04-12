@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
 import ReactTooltip from 'react-tooltip';
-
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteProject } from '../../Redux/actions/project';
@@ -18,21 +17,27 @@ import icon30 from '../../../images/icon30.svg';
 import icon31 from '../../../images/icon31.svg';
 import icon32 from '../../../images/icon32.svg';
 
-
-const ProjectItem = (props) => {
-  const onDelete = (e) => {
-    e.preventDefault();
-    deleteProject(props.id);
-  }
-
+const ProjectItem = ({
+  toggleStatisticsModal,
+  toggleImportModal,
+  setId,
+  deleteProject,
+  project: { id, name, description, frequency, status }
+}) => {
   const openStatisticsModal = (e) => {
     e.preventDefault();
-    props.setId(props.id);
-    props.toggle();
+    setId(id);
+    toggleStatisticsModal();
   }
 
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
+  const openImportModal = (e) => {
+    e.preventDefault();
+    setId(id);
+    toggleImportModal();
+  }
+
+  // const [modal, setModal] = useState(false);
+  // const toggle = () => setModal(!modal);
 
 	const [modal1, setModal1] = useState(false);
   const toggle1 = () => setModal1(!modal1);
@@ -48,10 +53,10 @@ const ProjectItem = (props) => {
         <div className="left-content">
           <ImageBlock url={imgUrl}/>
           <div className="item-info">
-            <h6>{props.name}</h6>
-            <span className="item-id">ID# {props.id}</span>
-            <p>{props.description}</p>
-            <Link to={"/projects/" + props.id + "/bots"} data-tip="Click here or on the title to see the list of bots and datasets">Project details</Link>
+            <h6>{name}</h6>
+            <span className="item-id">ID# {id}</span>
+            <p>{description}</p>
+            <Link to={`/projects/${id}/bots`} data-tip="Click here or on the title to see the list of bots and datasets">Project details</Link>
             <ReactTooltip />
           </div>
         </div>
@@ -66,7 +71,7 @@ const ProjectItem = (props) => {
               '4': "Weekly",
               '5': "Biweekly",
               '6': "Monthly",
-            }[props.frequency]
+            }[frequency]
           }
         </span>
       </td>
@@ -78,7 +83,7 @@ const ProjectItem = (props) => {
             '3': <span className="gray-btn">Paused</span>,
             '4': <span className="gray-btn">Completely</span>,
             '5': <span className="gray-btn">Scheduled</span>,
-          }[props.status]
+          }[status]
         }
       </td>
       <td>
@@ -96,7 +101,7 @@ const ProjectItem = (props) => {
           <Link to="/#0">
             <img src={icon27} alt="icon27" />
           </Link>
-          <button onClick={(e) => onDelete(e)}>
+          <button onClick={(e) => deleteProject(id)}>
             <img src={icon28} alt="icon28" />
           </button>
           <br/>
@@ -133,4 +138,13 @@ const ProjectItem = (props) => {
   )
 }
 
-export default ProjectItem;
+ProjectItem.propTypes = {
+	deleteProject: PropTypes.func.isRequired,
+	project: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  // project: state.project,
+});
+
+export default connect(mapStateToProps, { deleteProject })(ProjectItem);

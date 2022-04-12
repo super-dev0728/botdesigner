@@ -36,6 +36,7 @@ class projectController extends Controller
      */
     public function store(Request $request)
     {
+        // print_r($request); die;
         $newProject = Project::create([
             'name' => $request->name,
             'description' => $request->description,
@@ -43,12 +44,16 @@ class projectController extends Controller
             'status' => 1,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
+            'last_extraction' => null,
             'nr_bots' => 0,
             'nr_dataset_created' => 0,
             'nr_record_extracted' => 0
         ]);
         if($newProject){
-            return response()->json(["status" => 200]);
+            return response()->json([
+                "project" => $newProject,
+                "status" => 200
+            ]);
         }
     }
 

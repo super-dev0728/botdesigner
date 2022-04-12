@@ -7,7 +7,8 @@ import {
   GET_PROJECT,
   DELETE_PROJECT,
   UPDATE_PROJECT,
-  PROJECT_ERROR
+  PROJECT_ERROR,
+  ASSOCIATE_SCRAPER
 } from './types';
 
 /**
@@ -33,7 +34,7 @@ export const getProjects = () => async (dispatch) => {
 /**
  * Add a project
  */
- export const addProject = (formData) => async (dispatch) => {
+export const addProject = (formData) => async (dispatch) => {
   const config = {
     headers: {
       'Content-type': 'application/json',
@@ -42,10 +43,10 @@ export const getProjects = () => async (dispatch) => {
 
   try {
     const res = await axios.post('/api/projects', formData, config);
-
+    console.log(res.data.project);
     dispatch({
       type: ADD_PROJECT,
-      payload: res.data,
+      payload: res.data.project,
     });
 
     dispatch(setAlert('Project created', 'success'));
@@ -79,15 +80,13 @@ export const getProject = (projectId) => async (dispatch) => {
 /**
  * Delete a project
  */
- export const deleteProject = (projectId) => async (dispatch) => {
-   alert('asfasf');
+export const deleteProject = (projectId) => async (dispatch) => {
   try {
     await axios.delete(`/api/projects/${projectId}`);
 
     dispatch({
       type: DELETE_PROJECT,
       payload: projectId,
-      // we return the array of likes
     });
 
     dispatch(setAlert('Project removed', 'success'));
@@ -98,3 +97,24 @@ export const getProject = (projectId) => async (dispatch) => {
     });
   }
 };
+
+/**
+ *  Associate a Bot/Scraper
+ */
+export const associateScraper = (projectId, scraperId) => async (dispatch) => {
+
+  try {
+    const res = await axios.post(`/api/projects/${projectId}`, scraperId);
+    dispatch({
+      type: ASSOCIATE_SCRAPER,
+      payload: res.data,
+    });
+
+    dispatch(setAlert('Project created', 'success'));
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+}

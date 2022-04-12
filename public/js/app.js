@@ -31984,6 +31984,7 @@ var logout = function logout() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "addProject": function() { return /* binding */ addProject; },
+/* harmony export */   "associateScraper": function() { return /* binding */ associateScraper; },
 /* harmony export */   "deleteProject": function() { return /* binding */ deleteProject; },
 /* harmony export */   "getProject": function() { return /* binding */ getProject; },
 /* harmony export */   "getProjects": function() { return /* binding */ getProjects; }
@@ -32075,16 +32076,17 @@ var addProject = function addProject(formData) {
 
             case 4:
               res = _context2.sent;
+              console.log(res.data.project);
               dispatch({
                 type: _types__WEBPACK_IMPORTED_MODULE_3__.ADD_PROJECT,
-                payload: res.data
+                payload: res.data.project
               });
               dispatch((0,_alert__WEBPACK_IMPORTED_MODULE_2__.setAlert)('Project created', 'success'));
-              _context2.next = 12;
+              _context2.next = 13;
               break;
 
-            case 9:
-              _context2.prev = 9;
+            case 10:
+              _context2.prev = 10;
               _context2.t0 = _context2["catch"](1);
               dispatch({
                 type: _types__WEBPACK_IMPORTED_MODULE_3__.PROJECT_ERROR,
@@ -32094,12 +32096,12 @@ var addProject = function addProject(formData) {
                 }
               });
 
-            case 12:
+            case 13:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 9]]);
+      }, _callee2, null, [[1, 10]]);
     }));
 
     return function (_x2) {
@@ -32167,24 +32169,22 @@ var deleteProject = function deleteProject(projectId) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              alert('asfasf');
-              _context4.prev = 1;
-              _context4.next = 4;
+              _context4.prev = 0;
+              _context4.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/projects/".concat(projectId));
 
-            case 4:
+            case 3:
               dispatch({
                 type: _types__WEBPACK_IMPORTED_MODULE_3__.DELETE_PROJECT,
-                payload: projectId // we return the array of likes
-
+                payload: projectId
               });
               dispatch((0,_alert__WEBPACK_IMPORTED_MODULE_2__.setAlert)('Project removed', 'success'));
-              _context4.next = 11;
+              _context4.next = 10;
               break;
 
-            case 8:
-              _context4.prev = 8;
-              _context4.t0 = _context4["catch"](1);
+            case 7:
+              _context4.prev = 7;
+              _context4.t0 = _context4["catch"](0);
               dispatch({
                 type: _types__WEBPACK_IMPORTED_MODULE_3__.PROJECT_ERROR,
                 payload: {
@@ -32193,12 +32193,296 @@ var deleteProject = function deleteProject(projectId) {
                 }
               });
 
-            case 11:
+            case 10:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[1, 8]]);
+      }, _callee4, null, [[0, 7]]);
+    }));
+
+    return function (_x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+};
+/**
+ *  Associate a Bot/Scraper
+ */
+
+var associateScraper = function associateScraper(projectId, scraperId) {
+  return /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(dispatch) {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              _context5.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/projects/".concat(projectId), scraperId);
+
+            case 3:
+              res = _context5.sent;
+              dispatch({
+                type: _types__WEBPACK_IMPORTED_MODULE_3__.ASSOCIATE_SCRAPER,
+                payload: res.data
+              });
+              dispatch((0,_alert__WEBPACK_IMPORTED_MODULE_2__.setAlert)('Project created', 'success'));
+              _context5.next = 11;
+              break;
+
+            case 8:
+              _context5.prev = 8;
+              _context5.t0 = _context5["catch"](0);
+              dispatch({
+                type: _types__WEBPACK_IMPORTED_MODULE_3__.PROJECT_ERROR,
+                payload: {
+                  msg: _context5.t0.response.statusText,
+                  status: _context5.t0.response.status
+                }
+              });
+
+            case 11:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[0, 8]]);
+    }));
+
+    return function (_x5) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+};
+
+/***/ }),
+
+/***/ "./resources/js/Redux/actions/scraper.js":
+/*!***********************************************!*\
+  !*** ./resources/js/Redux/actions/scraper.js ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addScraper": function() { return /* binding */ addScraper; },
+/* harmony export */   "deleteScraper": function() { return /* binding */ deleteScraper; },
+/* harmony export */   "getScraper": function() { return /* binding */ getScraper; },
+/* harmony export */   "getScrapers": function() { return /* binding */ getScrapers; }
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _alert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./alert */ "./resources/js/Redux/actions/alert.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./types */ "./resources/js/Redux/actions/types.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+/**
+ * Get all scrapers
+ */
+
+var getScrapers = function getScrapers() {
+  return /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(dispatch) {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/scrapers');
+
+            case 3:
+              res = _context.sent;
+              dispatch({
+                type: _types__WEBPACK_IMPORTED_MODULE_3__.GET_SCRAPERS,
+                payload: res.data
+              });
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              dispatch({
+                type: _types__WEBPACK_IMPORTED_MODULE_3__.SCRAPER_ERROR,
+                payload: {
+                  msg: _context.t0.response.status,
+                  status: _context.t0.response.status
+                }
+              });
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+/**
+ * Add a project
+ */
+
+var addScraper = function addScraper(formData) {
+  return /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(dispatch) {
+      var config, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              config = {
+                headers: {
+                  'Content-type': 'application/json'
+                }
+              };
+              _context2.prev = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/scrapers', formData, config);
+
+            case 4:
+              res = _context2.sent;
+              dispatch({
+                type: _types__WEBPACK_IMPORTED_MODULE_3__.ADD_SCRAPER,
+                payload: res.data
+              });
+              dispatch((0,_alert__WEBPACK_IMPORTED_MODULE_2__.setAlert)('Scraper created', 'success'));
+              _context2.next = 12;
+              break;
+
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](1);
+              dispatch({
+                type: _types__WEBPACK_IMPORTED_MODULE_3__.SCRAPER_ERROR,
+                payload: {
+                  msg: _context2.t0.response.statusText,
+                  status: _context2.t0.response.status
+                }
+              });
+
+            case 12:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 9]]);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+};
+/**
+ * Get a scraper
+ */
+
+var getScraper = function getScraper(scraperId) {
+  return /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(dispatch) {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              _context3.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/scrapers/".concat(scraperId));
+
+            case 3:
+              res = _context3.sent;
+              dispatch({
+                type: _types__WEBPACK_IMPORTED_MODULE_3__.GET_SCRAPER,
+                payload: res.data
+              });
+              _context3.next = 10;
+              break;
+
+            case 7:
+              _context3.prev = 7;
+              _context3.t0 = _context3["catch"](0);
+              dispatch({
+                type: _types__WEBPACK_IMPORTED_MODULE_3__.SCRAPER_ERROR,
+                payload: {
+                  msg: _context3.t0.response.statusText,
+                  status: _context3.t0.response.status
+                }
+              });
+
+            case 10:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[0, 7]]);
+    }));
+
+    return function (_x3) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+};
+/**
+ * Delete a scraper
+ */
+
+var deleteScraper = function deleteScraper(scraperId) {
+  return /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(dispatch) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/scrapers/".concat(scraperId));
+
+            case 3:
+              dispatch({
+                type: _types__WEBPACK_IMPORTED_MODULE_3__.DELETE_SCRAPER,
+                payload: scraperId // we return the array of likes
+
+              });
+              dispatch((0,_alert__WEBPACK_IMPORTED_MODULE_2__.setAlert)('Scraper removed', 'success'));
+              _context4.next = 10;
+              break;
+
+            case 7:
+              _context4.prev = 7;
+              _context4.t0 = _context4["catch"](0);
+              dispatch({
+                type: _types__WEBPACK_IMPORTED_MODULE_3__.SCRAPER_ERROR,
+                payload: {
+                  msg: _context4.t0.response.statusText,
+                  status: _context4.t0.response.status
+                }
+              });
+
+            case 10:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 7]]);
     }));
 
     return function (_x4) {
@@ -32220,14 +32504,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ACCOUNT_DELETED": function() { return /* binding */ ACCOUNT_DELETED; },
 /* harmony export */   "ADD_PROJECT": function() { return /* binding */ ADD_PROJECT; },
+/* harmony export */   "ADD_SCRAPER": function() { return /* binding */ ADD_SCRAPER; },
+/* harmony export */   "ASSOCIATE_SCRAPER": function() { return /* binding */ ASSOCIATE_SCRAPER; },
 /* harmony export */   "AUTH_ERROR": function() { return /* binding */ AUTH_ERROR; },
 /* harmony export */   "CLEAR_PROFILE": function() { return /* binding */ CLEAR_PROFILE; },
 /* harmony export */   "DELETE_PROJECT": function() { return /* binding */ DELETE_PROJECT; },
+/* harmony export */   "DELETE_SCRAPER": function() { return /* binding */ DELETE_SCRAPER; },
 /* harmony export */   "GET_PROFILE": function() { return /* binding */ GET_PROFILE; },
 /* harmony export */   "GET_PROFILES": function() { return /* binding */ GET_PROFILES; },
 /* harmony export */   "GET_PROJECT": function() { return /* binding */ GET_PROJECT; },
 /* harmony export */   "GET_PROJECTS": function() { return /* binding */ GET_PROJECTS; },
 /* harmony export */   "GET_REPOS": function() { return /* binding */ GET_REPOS; },
+/* harmony export */   "GET_SCRAPER": function() { return /* binding */ GET_SCRAPER; },
+/* harmony export */   "GET_SCRAPERS": function() { return /* binding */ GET_SCRAPERS; },
+/* harmony export */   "IMPORT_SCRAPER": function() { return /* binding */ IMPORT_SCRAPER; },
 /* harmony export */   "LOGIN_FAIL": function() { return /* binding */ LOGIN_FAIL; },
 /* harmony export */   "LOGIN_SUCCESS": function() { return /* binding */ LOGIN_SUCCESS; },
 /* harmony export */   "LOGOUT": function() { return /* binding */ LOGOUT; },
@@ -32236,9 +32526,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "REGISTER_FAIL": function() { return /* binding */ REGISTER_FAIL; },
 /* harmony export */   "REGISTER_SUCCESS": function() { return /* binding */ REGISTER_SUCCESS; },
 /* harmony export */   "REMOVE_ALERT": function() { return /* binding */ REMOVE_ALERT; },
+/* harmony export */   "SCRAPER_ERROR": function() { return /* binding */ SCRAPER_ERROR; },
 /* harmony export */   "SET_ALERT": function() { return /* binding */ SET_ALERT; },
 /* harmony export */   "UPDATE_PROFILE": function() { return /* binding */ UPDATE_PROFILE; },
 /* harmony export */   "UPDATE_PROJECT": function() { return /* binding */ UPDATE_PROJECT; },
+/* harmony export */   "UPDATE_SCRAPER": function() { return /* binding */ UPDATE_SCRAPER; },
 /* harmony export */   "USER_LOADED": function() { return /* binding */ USER_LOADED; }
 /* harmony export */ });
 var SET_ALERT = 'SET_ALERT';
@@ -32257,12 +32549,20 @@ var UPDATE_PROFILE = 'UPDATE_PROFILE';
 var PROFILE_ERROR = 'PROFILE_ERROR';
 var CLEAR_PROFILE = 'CLEAR_PROFILE';
 var ACCOUNT_DELETED = 'ACCOUNT_DELETED';
+var GET_SCRAPERS = 'GET_SCRAPERS';
+var ADD_SCRAPER = 'ADD_SCRAPERS';
+var GET_SCRAPER = 'GET_SCRAPER';
+var DELETE_SCRAPER = 'DELETE_SCRAPER';
+var UPDATE_SCRAPER = 'UPDATE_SCRAPER';
+var SCRAPER_ERROR = 'SCRAPER_ERROR';
+var IMPORT_SCRAPER = 'IMPORT_SCRAPER';
 var GET_PROJECTS = 'GET_PROJECTS';
 var GET_PROJECT = 'GET_PROJECT';
-var ADD_PROJECT = 'GET_PROJECT';
+var ADD_PROJECT = 'ADD_PROJECT';
 var DELETE_PROJECT = 'DELETE_PROJECT';
 var UPDATE_PROJECT = 'UPDATE_PROJECT';
 var PROJECT_ERROR = 'PROJECT_ERROR';
+var ASSOCIATE_SCRAPER = 'ASSOCIATE_SCRAPER';
 
 /***/ }),
 
@@ -32442,6 +32742,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var initialState = {
   projects: [],
+  project: null,
   loading: true,
   error: {}
 };
@@ -32458,7 +32759,14 @@ var initialState = {
         loading: false
       });
 
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__.GET_PROJECT:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        project: payload.projects,
+        loading: false
+      });
+
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__.ADD_PROJECT:
+      console.log(payload);
       return _objectSpread(_objectSpread({}, state), {}, {
         projects: [payload].concat(_toConsumableArray(state.projects)),
         loading: false
@@ -32467,7 +32775,7 @@ var initialState = {
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__.DELETE_PROJECT:
       return _objectSpread(_objectSpread({}, state), {}, {
         projects: state.projects.filter(function (project) {
-          return project._id !== payload;
+          return project.id !== payload;
         }),
         loading: false
       });
@@ -38001,6 +38309,208 @@ function TopSearch() {
 
 /***/ }),
 
+/***/ "./resources/js/components/Project/ImportScraperModal.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Project/ImportScraperModal.js ***!
+  \***************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.modern.js");
+/* harmony import */ var react_multiselect_checkboxes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-multiselect-checkboxes */ "./node_modules/react-multiselect-checkboxes/lib/index.js");
+/* harmony import */ var _Redux_actions_scraper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Redux/actions/scraper */ "./resources/js/Redux/actions/scraper.js");
+/* harmony import */ var _Redux_actions_project__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Redux/actions/project */ "./resources/js/Redux/actions/project.js");
+/* harmony import */ var _images_Upload_Icon_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../images/Upload-Icon.svg */ "./resources/images/Upload-Icon.svg");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+function ImportScraperModal(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState2 = _slicedToArray(_useState, 2),
+      importData = _useState2[0],
+      setImportData = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState4 = _slicedToArray(_useState3, 2),
+      associateData = _useState4[0],
+      setAssociateData = _useState4[1];
+
+  var onSave = function onSave(e) {
+    e.preventDefault();
+    (0,_Redux_actions_scraper__WEBPACK_IMPORTED_MODULE_2__.addScraper)(importData).then(function () {
+      alert("Succesfully Added!");
+    })["catch"](function () {
+      return alert('Error!!!');
+    });
+    (0,_Redux_actions_project__WEBPACK_IMPORTED_MODULE_3__.associateScraper)(associateData).then(function () {
+      alert("Successfully Associated!");
+    })["catch"](function () {
+      return alert('Error!!!');
+    });
+  };
+
+  var options = [{
+    label: 'KCOM Colourpages UK',
+    value: 1
+  }, {
+    label: 'Yellow Pages Spain',
+    value: 2
+  }, {
+    label: 'Comments on G20 Twitter',
+    value: 3
+  }, {
+    label: 'Walmart Smart TVs',
+    value: 4
+  }, {
+    label: 'Opinions on Jesus "catholicforum.com"',
+    value: 5
+  }, {
+    label: 'Smart TVs on Amazon.it',
+    value: 6
+  }];
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Modal, {
+    isOpen: props.isOpen,
+    toggle: props.toggle,
+    className: "modalWrap existing-bot",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.ModalHeader, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        className: "closeButton",
+        onClick: props.toggle
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+        className: "modalTitle",
+        children: ["Import or Associate Existing Bots/Scrapers to the", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+          children: ["Extraction Project", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+            className: "blue-text",
+            children: "'" + props.name + "'"
+          })]
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.ModalBody, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "modalBodyContent",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Form, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+              children: ["Import extraction bots/scrapers", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: "Select one or more bots from your computer"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+              className: "uploadIcon",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Input, {
+                type: "file"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                src: _images_Upload_Icon_svg__WEBPACK_IMPORTED_MODULE_4__["default"],
+                alt: "Upload"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+              children: ["Associate an existing bot/scraper:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: "Select one or ore bots from the dropdown list"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: "multi-select-box",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                className: "search-box",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Input, {
+                    type: "checkbox"
+                  }), "Select all"]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  className: "searchInput",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                    className: "search-icon",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("svg", {
+                      width: "16",
+                      height: "16",
+                      "aria-hidden": "true",
+                      focusable: "false",
+                      "data-prefix": "fas",
+                      "data-icon": "search",
+                      role: "img",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 512 512",
+                      "class": "svg-inline--fa fa-search fa-w-16 fa-2x",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
+                        fill: "currentColor",
+                        d: "M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z",
+                        "class": ""
+                      })
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Input, {
+                    type: "text",
+                    placeholder: "Search bot/scraper"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                    className: "close-icon",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("svg", {
+                      width: "16",
+                      height: "16",
+                      "aria-hidden": "true",
+                      focusable: "false",
+                      "data-prefix": "fas",
+                      "data-icon": "times-circle",
+                      role: "img",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 512 512",
+                      "class": "svg-inline--fa fa-times-circle fa-w-16 fa-2x",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
+                        fill: "currentColor",
+                        d: "M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z",
+                        "class": ""
+                      })
+                    })
+                  })]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_multiselect_checkboxes__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                options: options
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "btn-block",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+              to: "#0",
+              onClick: props.toggle,
+              children: "CANCEL"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+              to: "#",
+              onClick: onSave,
+              className: "style-two",
+              children: "SAVE"
+            })]
+          })]
+        })
+      })
+    })]
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (ImportScraperModal);
+
+/***/ }),
+
 /***/ "./resources/js/components/Project/NewProject.js":
 /*!*******************************************************!*\
   !*** ./resources/js/components/Project/NewProject.js ***!
@@ -38097,13 +38607,16 @@ function NewProject() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_multi_date_picker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-multi-date-picker */ "./node_modules/react-multi-date-picker/build/index.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.modern.js");
-/* harmony import */ var _Redux_actions_project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Redux/actions/project */ "./resources/js/Redux/actions/project.js");
-/* harmony import */ var _images_Upload_Icon_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../images/Upload-Icon.svg */ "./resources/images/Upload-Icon.svg");
-/* harmony import */ var _images_icon37_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../images/icon37.svg */ "./resources/images/icon37.svg");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.modern.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _Redux_actions_project__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Redux/actions/project */ "./resources/js/Redux/actions/project.js");
+/* harmony import */ var _images_Upload_Icon_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../images/Upload-Icon.svg */ "./resources/images/Upload-Icon.svg");
+/* harmony import */ var _images_icon37_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../images/icon37.svg */ "./resources/images/icon37.svg");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -38132,16 +38645,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var NewProjectModal = function NewProjectModal(_ref) {
   var isOpen = _ref.isOpen,
-      toggle = _ref.toggle;
+      toggleAddModal = _ref.toggleAddModal,
+      addProject = _ref.addProject;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     name: '',
     description: '',
     frequency: '',
-    start_date: '',
-    end_date: ''
+    img: '',
+    start_date: '2022-04-12',
+    end_date: '2022-04-13'
   }),
       _useState2 = _slicedToArray(_useState, 2),
       formData = _useState2[0],
@@ -38150,11 +38667,12 @@ var NewProjectModal = function NewProjectModal(_ref) {
   var name = formData.name,
       description = formData.description,
       frequency = formData.frequency,
+      img = formData.img,
       start_date = formData.start_date,
       end_date = formData.end_date;
 
   var _onChange = function onChange(e) {
-    setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, e.target.name, e.target.value)));
+    return setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, e.target.name, e.target.value)));
   };
 
   var today = new Date();
@@ -38166,44 +38684,33 @@ var NewProjectModal = function NewProjectModal(_ref) {
       values = _useState4[0],
       setValues = _useState4[1];
 
-  var onSave = function onSave(e) {
+  var saveProject = function saveProject(e) {
     e.preventDefault();
-    frequency = {
-      "One-Time": 1,
-      "Hourly": 2,
-      "Daily": 3,
-      "Weekly": 4,
-      "Biweekly": 5,
-      "Monthly": 6
-    }[frequency];
-    (0,_Redux_actions_project__WEBPACK_IMPORTED_MODULE_2__.addProject)(formData).then(function () {
-      alert("Succesfully Added!");
-      toggle();
-    })["catch"](function () {
-      return alert('Error!!!');
+    addProject(formData).then(toggleAddModal())["catch"](function (err) {
+      return alert(err);
     });
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Modal, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Modal, {
     isOpen: isOpen,
-    toggle: toggle,
+    toggle: toggleAddModal,
     className: "modalWrap new-project",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.ModalHeader, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.ModalHeader, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
         className: "modalTitle",
         children: "New Extraction Project - Creation Panel"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
         className: "closeButton",
-        onClick: toggle
+        onClick: toggleAddModal
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.ModalBody, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.ModalBody, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "modalBodyContent",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Form, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Form, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.FormGroup, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Label, {
               children: "Project name:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Input, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Input, {
               type: "text",
               placeholder: "Write your extration project name here",
               name: "name",
@@ -38212,10 +38719,10 @@ var NewProjectModal = function NewProjectModal(_ref) {
                 return _onChange(e);
               }
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.FormGroup, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Label, {
               children: "Description:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Input, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Input, {
               type: "text",
               placeholder: "Write a brief description of your extration project here",
               name: "description",
@@ -38224,24 +38731,28 @@ var NewProjectModal = function NewProjectModal(_ref) {
                 return _onChange(e);
               }
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.FormGroup, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Label, {
               children: "Upload image:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
               className: "uploadIcon",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Input, {
-                type: "file"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-                src: _images_Upload_Icon_svg__WEBPACK_IMPORTED_MODULE_3__["default"],
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Input, {
+                type: "file",
+                value: img,
+                onChange: function onChange(e) {
+                  return _onChange(e);
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+                src: _images_Upload_Icon_svg__WEBPACK_IMPORTED_MODULE_4__["default"],
                 alt: "Upload"
               })]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.FormGroup, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
               className: "form-group-inner",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Label, {
                 children: "Extraction frequency:"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Input, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Input, {
                 type: "select",
                 id: "exampleSelectMulti",
                 name: "frequency",
@@ -38249,46 +38760,54 @@ var NewProjectModal = function NewProjectModal(_ref) {
                 onChange: function onChange(e) {
                   return _onChange(e);
                 },
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                  value: 1,
                   children: "One-Time"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                  value: 2,
                   children: "Hourly"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                  value: 3,
                   children: "Daily"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                  value: 4,
                   children: "Weekly"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                  value: 5,
                   children: "Biweekly"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                  value: 6,
                   children: "Monthly"
                 })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
               className: "form-group-inner",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.Label, {
-                children: ["Schedule start and end date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.Label, {
+                children: ["Schedule start and end date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
                   children: "(only start date for one-time extraction)"
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
                 className: "date-picker",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
                   multiple: true,
                   value: values,
                   onChange: setValues,
-                  src: _images_icon37_svg__WEBPACK_IMPORTED_MODULE_4__["default"],
+                  src: _images_icon37_svg__WEBPACK_IMPORTED_MODULE_5__["default"],
                   alt: "Planner"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_multi_date_picker__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_multi_date_picker__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
               })]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "btn-block",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
               to: "#0",
-              onClick: toggle,
+              onClick: toggleAddModal,
               children: "CANCEL"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
               to: "#",
-              onClick: onSave,
+              onClick: function onClick(e) {
+                return saveProject(e);
+              },
               className: "style-two",
               children: "SAVE"
             })]
@@ -38299,7 +38818,15 @@ var NewProjectModal = function NewProjectModal(_ref) {
   });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (NewProjectModal);
+NewProjectModal.propTypes = {
+  addProject: (prop_types__WEBPACK_IMPORTED_MODULE_9___default().func.isRequired)
+};
+
+var mapStateToProps = function mapStateToProps(state) {};
+
+/* harmony default export */ __webpack_exports__["default"] = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, {
+  addProject: _Redux_actions_project__WEBPACK_IMPORTED_MODULE_3__.addProject
+})(NewProjectModal));
 
 /***/ }),
 
@@ -38315,7 +38842,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.modern.js");
 /* harmony import */ var _images_icon18_hover_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../images/icon18-hover.svg */ "./resources/images/icon18-hover.svg");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
- // import { Link } from 'react-router-dom';
 
 
 
@@ -38323,7 +38849,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var NoProjects = function NoProjects(_ref) {
-  var toggle = _ref.toggle;
+  var toggleAddModal = _ref.toggleAddModal;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "newProjectWrap",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
@@ -38334,7 +38860,7 @@ var NoProjects = function NoProjects(_ref) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.Label, {
           "for": "file",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-            onClick: toggle,
+            onClick: toggleAddModal,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
                 src: _images_icon18_hover_svg__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -39286,6 +39812,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_16__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _Redux_actions_project__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Redux/actions/project */ "./resources/js/Redux/actions/project.js");
 /* harmony import */ var _Layout_ImageBlock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Layout/ImageBlock */ "./resources/js/components/Layout/ImageBlock.js");
@@ -39330,40 +39858,45 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var ProjectItem = function ProjectItem(props) {
-  var onDelete = function onDelete(e) {
-    e.preventDefault();
-    (0,_Redux_actions_project__WEBPACK_IMPORTED_MODULE_3__.deleteProject)(props.id);
-  };
+var ProjectItem = function ProjectItem(_ref) {
+  var toggleStatisticsModal = _ref.toggleStatisticsModal,
+      toggleImportModal = _ref.toggleImportModal,
+      setId = _ref.setId,
+      deleteProject = _ref.deleteProject,
+      _ref$project = _ref.project,
+      id = _ref$project.id,
+      name = _ref$project.name,
+      description = _ref$project.description,
+      frequency = _ref$project.frequency,
+      status = _ref$project.status;
 
   var openStatisticsModal = function openStatisticsModal(e) {
     e.preventDefault();
-    props.setId(props.id);
-    props.toggle();
+    setId(id);
+    toggleStatisticsModal();
   };
+
+  var openImportModal = function openImportModal(e) {
+    e.preventDefault();
+    setId(id);
+    toggleImportModal();
+  }; // const [modal, setModal] = useState(false);
+  // const toggle = () => setModal(!modal);
+
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
-      modal = _useState2[0],
-      setModal = _useState2[1];
-
-  var toggle = function toggle() {
-    return setModal(!modal);
-  };
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      modal1 = _useState4[0],
-      setModal1 = _useState4[1];
+      modal1 = _useState2[0],
+      setModal1 = _useState2[1];
 
   var toggle1 = function toggle1() {
     return setModal1(!modal1);
   };
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      modal2 = _useState6[0],
-      setModal2 = _useState6[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      modal2 = _useState4[0],
+      setModal2 = _useState4[1];
 
   var toggle2 = function toggle2() {
     return setModal2(!modal2);
@@ -39379,14 +39912,14 @@ var ProjectItem = function ProjectItem(props) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
           className: "item-info",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("h6", {
-            children: props.name
+            children: name
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("span", {
             className: "item-id",
-            children: ["ID# ", props.id]
+            children: ["ID# ", id]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
-            children: props.description
+            children: description
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Link, {
-            to: "/projects/" + props.id + "/bots",
+            to: "/projects/".concat(id, "/bots"),
             "data-tip": "Click here or on the title to see the list of bots and datasets",
             children: "Project details"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
@@ -39402,7 +39935,7 @@ var ProjectItem = function ProjectItem(props) {
           '4': "Weekly",
           '5': "Biweekly",
           '6': "Monthly"
-        }[props.frequency]
+        }[frequency]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("td", {
       children: {
@@ -39426,7 +39959,7 @@ var ProjectItem = function ProjectItem(props) {
           className: "gray-btn",
           children: "Scheduled"
         })
-      }[props.status]
+      }[status]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("td", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("span", {
         className: "projectInfoBtn",
@@ -39462,7 +39995,7 @@ var ProjectItem = function ProjectItem(props) {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("button", {
           onClick: function onClick(e) {
-            return onDelete(e);
+            return deleteProject(id);
           },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("img", {
             src: _images_icon28_svg__WEBPACK_IMPORTED_MODULE_9__["default"],
@@ -39519,7 +40052,19 @@ var ProjectItem = function ProjectItem(props) {
   });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (ProjectItem);
+ProjectItem.propTypes = {
+  deleteProject: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().func.isRequired),
+  project: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().object.isRequired)
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {// project: state.project,
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, {
+  deleteProject: _Redux_actions_project__WEBPACK_IMPORTED_MODULE_3__.deleteProject
+})(ProjectItem));
 
 /***/ }),
 
@@ -39542,9 +40087,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProjectStatisticsModal = function ProjectStatisticsModal(props) {
-  // console.log(props);
-  // const [statistic_modal, setStatisticModal] = useState(isOpen);
-  // const toggleStatisticModal = () => setStatisticModal(!statistic_modal);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.Modal, {
     isOpen: props.isOpen,
     toggle: props.toggle,
@@ -41839,22 +42381,23 @@ function NewProjectContainer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.modern.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.modern.js");
 /* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_16__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _Redux_actions_project__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Redux/actions/project */ "./resources/js/Redux/actions/project.js");
 /* harmony import */ var _Project_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Project.css */ "./resources/js/pages/Project/Project.css");
-/* harmony import */ var _components_Layout_TopSearch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Layout/TopSearch */ "./resources/js/components/Layout/TopSearch.js");
-/* harmony import */ var _components_Layout_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Layout/Breadcrumbs */ "./resources/js/components/Layout/Breadcrumbs.js");
-/* harmony import */ var _components_Project_ProjectItem__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/Project/ProjectItem */ "./resources/js/components/Project/ProjectItem.js");
-/* harmony import */ var _components_Project_ProjectStatisticsModal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/Project/ProjectStatisticsModal */ "./resources/js/components/Project/ProjectStatisticsModal.js");
-/* harmony import */ var _components_Project_NoProjects__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/Project/NoProjects */ "./resources/js/components/Project/NoProjects.js");
-/* harmony import */ var _components_Project_NewProjectModal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/Project/NewProjectModal */ "./resources/js/components/Project/NewProjectModal.js");
-/* harmony import */ var _components_Layout_Spinner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/Layout/Spinner */ "./resources/js/components/Layout/Spinner.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_Layout_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Layout/Spinner */ "./resources/js/components/Layout/Spinner.js");
+/* harmony import */ var _components_Layout_TopSearch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Layout/TopSearch */ "./resources/js/components/Layout/TopSearch.js");
+/* harmony import */ var _components_Layout_Breadcrumbs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/Layout/Breadcrumbs */ "./resources/js/components/Layout/Breadcrumbs.js");
+/* harmony import */ var _components_Project_ProjectItem__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/Project/ProjectItem */ "./resources/js/components/Project/ProjectItem.js");
+/* harmony import */ var _components_Project_ProjectStatisticsModal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/Project/ProjectStatisticsModal */ "./resources/js/components/Project/ProjectStatisticsModal.js");
+/* harmony import */ var _components_Project_NoProjects__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/Project/NoProjects */ "./resources/js/components/Project/NoProjects.js");
+/* harmony import */ var _components_Project_NewProjectModal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/Project/NewProjectModal */ "./resources/js/components/Project/NewProjectModal.js");
+/* harmony import */ var _components_Project_ImportScraperModal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/Project/ImportScraperModal */ "./resources/js/components/Project/ImportScraperModal.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -41878,6 +42421,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
  // Redux
+
 
 
 
@@ -41919,10 +42463,19 @@ var Project = function Project(_ref) {
     return setStatisticsModal(!statistics_modal);
   };
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      selected_id = _useState6[0],
-      setProjectId = _useState6[1];
+      import_modal = _useState6[0],
+      setImportModal = _useState6[1];
+
+  var toggleImportModal = function toggleImportModal() {
+    return setImportModal(!import_modal);
+  };
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      selected_id = _useState8[0],
+      setProjectId = _useState8[1];
 
   var setId = function setId(id) {
     return setProjectId(id);
@@ -41930,135 +42483,132 @@ var Project = function Project(_ref) {
 
   var selected_project = projects.filter(function (project) {
     return project.id === selected_id;
-  })[0]; // const options = [
-  // 	{ label: 'KCOM Colourpages UK', value: 1},
-  // 	{ label: 'Yellow Pages Spain', value: 2},
-  // 	{ label: 'Comments on G20 Twitter', value: 3},
-  // 	{ label: 'Walmart Smart TVs', value: 4},
-  // 	{ label: 'Opinions on Jesus "catholicforum.com"', value: 5},
-  // 	{ label: 'Smart TVs on Amazon.it', value: 6},
-  // ];
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("section", {
+  })[0];
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("section", {
       className: "project-list",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Layout_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Layout_TopSearch__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Layout_Breadcrumbs__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Layout_TopSearch__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
         className: "project-items",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
           className: "table-responsive",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_13__.Table, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_14__.Table, {
             borderless: true,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("thead", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("tr", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("th", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("thead", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("th", {
                   children: "Name/ID/Description"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("th", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("th", {
                   children: "Frequency"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("th", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("th", {
                   children: "Status"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("th", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("th", {
                   children: "Statistics"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("th", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("th", {
                   children: "Actions"
                 })]
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("tbody", {
-              children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Layout_Spinner__WEBPACK_IMPORTED_MODULE_11__["default"], {}) // <h1>Loading...</h1>
-              : projects.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Project_NoProjects__WEBPACK_IMPORTED_MODULE_9__["default"], {
-                  toggle: toggleAddModal
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Project_NewProjectModal__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("tbody", {
+              children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Layout_Spinner__WEBPACK_IMPORTED_MODULE_5__["default"], {}) // <h1>Loading...</h1>
+              : projects.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Project_NoProjects__WEBPACK_IMPORTED_MODULE_10__["default"], {
+                  toggleAddModal: toggleAddModal
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Project_NewProjectModal__WEBPACK_IMPORTED_MODULE_11__["default"], {
                   isOpen: add_modal,
-                  toggle: toggleAddModal
+                  toggleAddModal: toggleAddModal
                 })]
-              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                 children: [projects.map(function (project, id) {
-                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Project_ProjectItem__WEBPACK_IMPORTED_MODULE_7__["default"], _objectSpread(_objectSpread({}, project), {}, {
-                      toggle: toggleStatisticsModal,
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Project_ProjectItem__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                      project: project,
+                      toggleStatisticsModal: toggleStatisticsModal,
+                      toggleImportModal: toggleImportModal,
                       setId: setId
-                    }), id)
+                    }, id)
                   });
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Project_ProjectStatisticsModal__WEBPACK_IMPORTED_MODULE_8__["default"], _objectSpread({
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Project_ProjectStatisticsModal__WEBPACK_IMPORTED_MODULE_9__["default"], _objectSpread({
                   isOpen: statistics_modal,
                   toggle: toggleStatisticsModal
+                }, selected_project)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Project_ImportScraperModal__WEBPACK_IMPORTED_MODULE_12__["default"], _objectSpread({
+                  isOpen: import_modal,
+                  toggle: toggleImportModal
                 }, selected_project))]
               })
             })]
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+      }), loading === false && projects !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
         className: "pagination-block",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("nav", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("nav", {
           "aria-label": "Page navigation example",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("ul", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("ul", {
             "class": "pagination",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("li", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("li", {
               "class": "page-item",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Link, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Link, {
                 "class": "page-link",
                 to: "#",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
                   "data-tip": "First page",
                   children: "\xAB"
                 }), " Previous"]
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("li", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("li", {
               "class": "page-item active",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Link, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Link, {
                 "class": "page-link",
                 to: "#",
                 children: "1"
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("li", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("li", {
               "class": "page-item",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Link, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Link, {
                 "class": "page-link",
                 to: "#",
                 children: "2"
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("li", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("li", {
               "class": "page-item",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Link, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Link, {
                 "class": "page-link",
                 to: "#",
                 children: "3"
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("li", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("li", {
               "class": "page-item",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Link, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Link, {
                 "class": "page-link",
                 to: "#",
                 children: "4"
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("li", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("li", {
               "class": "page-item",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Link, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Link, {
                 "class": "page-link",
                 to: "#",
                 children: "5"
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("li", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("li", {
               "class": "page-item",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Link, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Link, {
                 "class": "page-link",
                 to: "#",
-                children: ["Next ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
+                children: ["Next ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
                   "data-tip": "Last page",
                   children: "\xBB"
                 })]
               })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
         })
-      })]
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {})]
     })
   });
 };
 
 Project.propTypes = {
-  getProjects: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().func.isRequired),
-  project: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().object.isRequired)
+  getProjects: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().func.isRequired),
+  project: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().object.isRequired)
 };
 
 var mapStateToProps = function mapStateToProps(state) {

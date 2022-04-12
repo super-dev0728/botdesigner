@@ -2,55 +2,49 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import DatePicker from "react-multi-date-picker"
 import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { addProject } from '../../Redux/actions/project';
 
 import uploadIcon from '../../../images/Upload-Icon.svg'
 import icon37 from '../../../images/icon37.svg'
 
-const NewProjectModal = ({isOpen, toggle}) => {
+const NewProjectModal = ({
+  isOpen,
+  toggleAddModal,
+  addProject
+}) => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     frequency: '',
-    start_date: '',
-    end_date: ''
+    img: '',
+    start_date: '2022-04-12',
+    end_date: '2022-04-13'
   });
 
-  var { name, description, frequency, start_date, end_date } = formData;
+  const { name, description, frequency, img, start_date, end_date } = formData;
 
-  const onChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value });
-  }
+  const onChange = (e) => 
+    setFormData({...formData, [e.target.name]: e.target.value });    
 
-  const today = new Date()
-  const tomorrow = new Date()
-  tomorrow.setDate(tomorrow.getDate() + 1)
-  const [values, setValues] = useState([today, tomorrow])
+  const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const [values, setValues] = useState([today, tomorrow]);
 
-  const onSave = (e) => {
+  const saveProject = (e) => {
     e.preventDefault();
-    frequency = {
-      "One-Time": 1,
-      "Hourly": 2,
-      "Daily": 3,
-      "Weekly": 4,
-      "Biweekly": 5,
-      "Monthly": 6,
-    }[frequency]
-    
     addProject(formData)
-      .then(() => {
-        alert("Succesfully Added!");
-        toggle();
-      })
-      .catch(() => alert('Error!!!'));
+      .then(toggleAddModal())
+      .catch((err) => alert(err));
   };
 
   return (
-    <Modal isOpen={isOpen} toggle={toggle} className="modalWrap new-project">
+    <Modal isOpen={isOpen} toggle={toggleAddModal} className="modalWrap new-project">
       <ModalHeader>
         <span className="modalTitle">New Extraction Project - Creation Panel</span>
-        <span className="closeButton" onClick={toggle}></span>
+        <span className="closeButton" onClick={toggleAddModal}></span>
       </ModalHeader>          
       <ModalBody>
         <div className="modalBodyContent">
@@ -78,7 +72,11 @@ const NewProjectModal = ({isOpen, toggle}) => {
             <FormGroup>
               <Label>Upload image:</Label>                  
               <span className="uploadIcon">
-                <Input type="file" />
+                <Input
+                  type="file"
+                  value={img}
+                  onChange={(e) => onChange(e)}
+                />
                 <img src={uploadIcon} alt="Upload" />
               </span>
             </FormGroup>
@@ -92,12 +90,12 @@ const NewProjectModal = ({isOpen, toggle}) => {
                   value={frequency}
                   onChange={(e) => onChange(e)}
                 >
-                  <option>One-Time</option>
-                  <option>Hourly</option>
-                  <option>Daily</option>
-                  <option>Weekly</option>
-                  <option>Biweekly</option>
-                  <option>Monthly</option>
+                  <option value={1}>One-Time</option>
+                  <option value={2}>Hourly</option>
+                  <option value={3}>Daily</option>
+                  <option value={4}>Weekly</option>
+                  <option value={5}>Biweekly</option>
+                  <option value={6}>Monthly</option>
                 </Input>
               </div>
               <div className="form-group-inner">
@@ -110,8 +108,8 @@ const NewProjectModal = ({isOpen, toggle}) => {
               </div>
             </FormGroup>
             <div className="btn-block">
-              <Link to="#0" onClick={toggle}>CANCEL</Link>
-              <Link to="#" onClick={onSave} className="style-two">SAVE</Link>
+              <Link to="#0" onClick={toggleAddModal}>CANCEL</Link>
+              <Link to="#" onClick={(e) => saveProject(e)} className="style-two">SAVE</Link>
             </div>
           </Form>
         </div>
@@ -120,4 +118,12 @@ const NewProjectModal = ({isOpen, toggle}) => {
   )
 }
 
-export default NewProjectModal
+NewProjectModal.propTypes = {
+	addProject: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => {
+
+};
+
+export default connect(mapStateToProps, { addProject })(NewProjectModal);

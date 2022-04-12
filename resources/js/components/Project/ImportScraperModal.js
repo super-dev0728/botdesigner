@@ -1,12 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Link} from "react-router-dom";
 import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 
+import { addScraper } from '../../Redux/actions/scraper';
+import { associateScraper } from '../../Redux/actions/project';
+
+
 import uploadIcon from '../../../images/Upload-Icon.svg'
 
 
-function ImportModal(props) {
+function ImportScraperModal(props) {
+  const [importData, setImportData] = useState();
+  const [associateData, setAssociateData] = useState();
+
+  const onSave = (e) => {
+    e.preventDefault();
+
+    addScraper(importData)
+      .then(() => {
+        alert("Succesfully Added!");
+      })
+      .catch(() => alert('Error!!!'));
+
+    associateScraper(associateData)
+      .then(() => {
+        alert("Successfully Associated!");
+      })
+      .catch(() => alert('Error!!!'));
+  }
 
   const options = [
 		{ label: 'KCOM Colourpages UK', value: 1},
@@ -21,7 +43,7 @@ function ImportModal(props) {
     <Modal isOpen={props.isOpen} toggle={props.toggle} className="modalWrap existing-bot">
       <ModalHeader>
         <span className="closeButton" onClick={props.toggle}></span>
-        <span className="modalTitle">Import or Associate Existing Bots/Scrapers to the<span>Extraction Project<span className="blue-text">"Smart TVs price comparison"</span></span></span>			
+        <span className="modalTitle">Import or Associate Existing Bots/Scrapers to the<span>Extraction Project<span className="blue-text">{"'" + props.name + "'"}</span></span></span>			
       </ModalHeader>          
       <ModalBody>
         <div className="modalBodyContent">
@@ -53,7 +75,7 @@ function ImportModal(props) {
           </FormGroup>
           <div className="btn-block">
           <Link to="#0" onClick={props.toggle}>CANCEL</Link>
-          <Link to="/projects/:id/bots" className="style-two">SAVE</Link>
+          <Link to="#" onClick={onSave} className="style-two">SAVE</Link>
           </div>
           
         </Form>
@@ -63,4 +85,4 @@ function ImportModal(props) {
   )
 }
 
-export default ImportModal
+export default ImportScraperModal;

@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    protected $fillable = ["name", "description", "frequency", "start_date", "end_date", "last_extraction", "nr_bots", "nr_dataset_created", "nr_record_extracted"];
+    protected $fillable = ["name", "description", "frequency", "status", "start_date", "end_date", "last_extraction", "nr_bots", "nr_dataset_created", "nr_record_extracted"];
 }

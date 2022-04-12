@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
   GET_PROJECTS,
+  GET_PROJECT,
   ADD_PROJECT,
   DELETE_PROJECT,
   PROJECT_ERROR
@@ -8,6 +9,7 @@ import {
 
 const initialState = {
   projects: [],
+  project: null,
   loading: true,
   error: {},
 };
@@ -22,7 +24,14 @@ export default (state = initialState, action) => {
         projects: payload.projects,
         loading: false
       };
+    case GET_PROJECT:
+    return {
+        ...state,
+        project: payload.projects,
+        loading: false
+      };
     case ADD_PROJECT:
+      console.log(payload);
       return {
         ...state,
         projects: [payload, ...state.projects],
@@ -31,7 +40,7 @@ export default (state = initialState, action) => {
     case DELETE_PROJECT:
       return {
         ...state,
-        projects: state.projects.filter((project) => project._id !== payload),
+        projects: state.projects.filter((project) => project.id !== payload),
         loading: false
       };
     case PROJECT_ERROR:

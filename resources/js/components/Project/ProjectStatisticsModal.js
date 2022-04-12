@@ -1,16 +1,9 @@
 import React from 'react'
-import { Row, Col, Table, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Row, Col, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import Img_1 from '../../../images/img-1.png';
 
-
-
 const ProjectStatisticsModal = (props) => {
-	// console.log(props);
-
-	// const [statistic_modal, setStatisticModal] = useState(isOpen);
-  // const toggleStatisticModal = () => setStatisticModal(!statistic_modal);
-
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggle} className="modalWrap project-static">
 			<ModalHeader>
